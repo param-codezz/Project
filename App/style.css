@@ -69,8 +69,6 @@ body{
   padding: 0;
   margin: 0;
   font-family: 'Habibi', sans-serif;
-  font-size: 24px;
-  background-color: rgb(34, 34, 34);
 }
 
 :root{
@@ -121,12 +119,104 @@ body{
   --blr-400: 50px;
   --blr-500: 120px;
 }
+
+/* Decorator Classes */
+.text-accent-blue{
+  color: var(--clr-text-accent-blue);
+}
+.text-white-100{
+  color: var(--clr-text-white-100);
+}
+.text-white-200{
+  color: var(--clr-text-white-200);
+}
+.text-white-300{
+  color: var(--clr-text-white-300);
+}
+.text-black-200{
+  color: var(--clr-text-black-200);
+}
+.text-black-300{
+  color: var(--clr-text-black-300);
+}
+.text-gray-100{
+  color: var(--clr-text-gray-100);
+}
+.text-gray-200{
+  color: var(--clr-text-gray-200);
+}
+.bg-accent-brown{
+  background: var(--clr-bg-accent-brown);
+}
+.bg-white-100{
+  background: var(--clr-bg-white-100);
+}
+.bg-white-200{
+  background: var(--clr-bg-white-200);
+}
+.bg-gray-100{
+  background: var(--clr-bg-gray-100);
+}
+.bg-gray-200{
+  background: var(--clr-bg-gray-200);
+}
+.bg-trn-gray-100{
+  background: var(--clr-bg-trn-gray-100);
+}
+.bg-trn-black-200{
+  background: var(--clr-bg-trn-black-200);
+}
+.bg-trn-black-300{
+  background: var(--clr-bg-trn-black-300);
+}
+.bg-trn-black-400{
+  background: var(--clr-bg-trn-black-400);
+}
+.bg-trn-black-500{
+  background: var(--clr-bg-trn-black-500);
+}
+.fs-100{
+  font-size: var(--fs-100);
+}
+.fs-200{
+  font-size: var(--fs-200);
+}
+.fs-300{
+  font-size: var(--fs-300);
+}
+.fs-400{
+  font-size: var(--fs-400);
+}
+.fs-500{
+  font-size: var(--fs-500);
+}
+.fs-600{
+  font-size: var(--fs-600);
+}
+.blr-100{
+  -webkit-backdrop-filter: blur(var(--blr-100));
+  backdrop-filter: blur(var(--blr-100));
+}
+.blr-200{
+  -webkit-backdrop-filter: blur(var(--blr-200));
+  backdrop-filter: blur(var(--blr-200));
+}
+.blr-300{
+  -webkit-backdrop-filter: blur(var(--blr-300));
+  backdrop-filter: blur(var(--blr-300));
+}
+.blr-400{
+  -webkit-backdrop-filter: blur(var(--blr-400));
+  backdrop-filter: blur(var(--blr-400));
+}
+.blr-500{
+  -webkit-backdrop-filter: blur(var(--blr-500));
+  backdrop-filter: blur(var(--blr-500));
+}
 nav{
   padding-inline: 1.8rem;
 }
 .navbar > span > a{
-  font-size: var(--fs-300);
-  color: var(--clr-text-white-100);
   padding-inline: var(--fs-100);
 }
 
