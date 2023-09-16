@@ -269,6 +269,7 @@ body{
 .pd-blk-300{
   padding-block: var(--pd-blk-300);
 }
+
 /* display structures */
 .stretch{
   display: flex;
@@ -280,8 +281,4 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-}
-
-nav{
-  display: none;
 }
