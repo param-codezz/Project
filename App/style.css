@@ -43,6 +43,12 @@ textarea,
 select {
   font: inherit;
 }
+
+button{
+  outline: none;
+  border: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
    scroll-behavior: auto;
@@ -118,9 +124,26 @@ body{
   --blr-300: 24px;
   --blr-400: 50px;
   --blr-500: 120px;
+
+  /* paddings */
+  --pd-100: 0.125rem;
+  --pd-200: 0.25rem;
+  --pd-300: 0.75rem;
+  
+  /* inline paddings */
+  --pd-inl-100: 0.25rem;
+  --pd-inl-200: 0.5rem;
+  --pd-inl-300: 0.75rem;
+
+  /* block paddings */
+  --pd-blk-100: 0.25rem;
+  --pd-blk-200: 0.5rem;
+  --pd-blk-300: 0.75rem;
 }
 
 /* Decorator Classes */
+
+/* color pallette */
 .text-accent-blue{
   color: var(--clr-text-accent-blue);
 }
@@ -175,6 +198,8 @@ body{
 .bg-trn-black-500{
   background: var(--clr-bg-trn-black-500);
 }
+
+/* font size */
 .fs-100{
   font-size: var(--fs-100);
 }
@@ -193,6 +218,8 @@ body{
 .fs-600{
   font-size: var(--fs-600);
 }
+
+/* blur classes */
 .blr-100{
   -webkit-backdrop-filter: blur(var(--blr-100));
   backdrop-filter: blur(var(--blr-100));
@@ -213,13 +240,36 @@ body{
   -webkit-backdrop-filter: blur(var(--blr-500));
   backdrop-filter: blur(var(--blr-500));
 }
-nav{
-  padding-inline: 1.8rem;
-}
-.navbar > span > a{
-  padding-inline: var(--fs-100);
-}
 
+/* padding */
+.pd-100{
+  padding: var(--pd-100);
+}
+.pd-200{
+  padding: var(--pd-200);
+}
+.pd-300{
+  padding: var(--pd-300);
+}
+.pd-inl-100{
+  padding-inline: var(--pd-inl-100);
+}
+.pd-inl-200{
+  padding-inline: var(--pd-inl-200);
+}
+.pd-inl-300{
+  padding-inline: var(--pd-inl-300);
+}
+.pd-blk-100{
+  padding-block: var(--pd-blk-100);
+}
+.pd-blk-200{
+  padding-block: var(--pd-blk-200);
+}
+.pd-blk-300{
+  padding-block: var(--pd-blk-300);
+}
+/* display structures */
 .stretch{
   display: flex;
   flex-direction: row;
@@ -230,4 +280,8 @@ nav{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+nav{
+  display: none;
 }
