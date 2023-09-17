@@ -42,6 +42,7 @@ button,
 textarea,
 select {
   font: inherit;
+  padding: 0.25rem;
 }
 
 button{
@@ -109,6 +110,8 @@ body{
   --clr-shd-accent-gold: #FFDCC3FF;
   --clr-shd-trn-accent-gold: #FCB47F80;
 
+  --clr-brd-gray: #4A4A4AFF;
+
   /* text sizing */
   --fs-100: 0.5rem;
   --fs-200: 1rem;
@@ -117,6 +120,16 @@ body{
   --fs-500: 2.5rem;
   --fs-600: 4rem;
   --fs-nav: var(--fs-300);
+
+  /* borders */
+  --brd-100: 0.25rem;
+
+  /* border radii */
+  --brd-rad-100: 0.75rem;
+  --brd-rad-200: 0.5rem;
+  --brd-rad-300: 2rem;
+  --brd-rad-400: 9rem;
+
 
   /* blurs */
   --blr-100: 12px;
@@ -241,6 +254,20 @@ body{
   backdrop-filter: blur(var(--blr-500));
 }
 
+/* border radius */
+.brd-rad-100{
+  border-radius: var(--brd-rad-100);
+}
+.brd-rad-200{
+  border-radius: var(--brd-rad-200);
+}
+.brd-rad-300{
+  border-radius: var(--brd-rad-300);
+}
+.brd-rad-400{
+  border-radius: var(--brd-rad-400);
+}
+
 /* padding */
 .pd-100{
   padding: var(--pd-100);
@@ -271,14 +298,24 @@ body{
 }
 
 /* display structures */
-.stretch{
+.fx-row{
   display: flex;
   flex-direction: row;
+}
+.fx-col{
+  display: flex;
+  flex-direction: column;
+}
+.fx-space-between{
+  display: flex;
   justify-content: space-between;
 }
-
-.space-between{
+.fx-space-evenly{
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
+}
+.fx-centre{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
