@@ -1,1 +1,0 @@
-# This will have django codes
