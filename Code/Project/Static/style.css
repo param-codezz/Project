@@ -147,6 +147,7 @@ body{
   --pd-inl-100: 0.25rem;
   --pd-inl-200: 0.5rem;
   --pd-inl-300: 0.75rem;
+  --pd-inl-400: 1rem;
 
   /* block paddings */
   --pd-blk-100: 0.25rem;
@@ -286,6 +287,9 @@ body{
 }
 .pd-inl-300{
   padding-inline: var(--pd-inl-300);
+}
+.pd-inl-400{
+  padding-inline: var(--pd-inl-400);
 }
 .pd-blk-100{
   padding-block: var(--pd-blk-100);
