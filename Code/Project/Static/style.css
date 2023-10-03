@@ -323,3 +323,7 @@ body{
   align-items: center;
   justify-content: center;
 }
+
+.bg-image{
+  background: url(pexels-ben-mack-5707644.jpg);
+}
