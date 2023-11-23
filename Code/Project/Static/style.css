@@ -77,7 +77,7 @@ button{
 body{
   padding: 0;
   margin: 0;
-  font-family: 'Habibi', sans-serif;
+  font-family: 'Ibarra Real Nova', sans-serif;
 }
 
 :root{
@@ -144,6 +144,7 @@ body{
   --pd-100: 0.125rem;
   --pd-200: 0.25rem;
   --pd-300: 0.75rem;
+
   
   /* inline paddings */
   --pd-inl-100: 0.25rem;
@@ -270,7 +271,9 @@ body{
 .brd-rad-400{
   border-radius: var(--brd-rad-400);
 }
-
+.brd-rad-btn-100{
+  border-radius: 0.3rem;
+}
 /* padding */
 .pd-100{
   padding: var(--pd-100);
@@ -280,6 +283,9 @@ body{
 }
 .pd-300{
   padding: var(--pd-300);
+}
+.pd-inl-50{
+  padding-inline: 0.1rem;
 }
 .pd-inl-100{
   padding-inline: var(--pd-inl-100);
@@ -301,6 +307,24 @@ body{
 }
 .pd-blk-300{
   padding-block: var(--pd-blk-300);
+}
+.mg-inl-100{
+  margin-inline: var(--pd-100);
+}
+.mg-inl-200{
+  margin-inline: var(--pd-200);
+}
+.mg-inl-300{
+  margin-inline: var(--pd-300);
+}
+.mg-blk-100{
+  margin-block: var(--pd-100);
+}
+.mg-blk-200{
+  margin-block: var(--pd-200);
+}
+.mg-blk-300{
+  margin-block: var(--pd-300);
 }
 
 /* display structures */
@@ -327,5 +351,69 @@ body{
 }
 
 .bg-image{
-  background: url(pexels-ben-mack-5707644.jpg);
+  background: url(/Static/pexels-ben-mack-5707644.jpg) no-repeat center;
+  background-size: cover;
+  height: 100svh;
+  width: 100svw;
+  background-position: 150%;
+}
+.wd-total{
+  width: max-content;
+}
+.dsp-grid{
+  display: grid;
+}
+.grid-width-equal{
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+}
+
+.scale-0-75{
+  transform: scale(0.75);
+}
+
+.bs-100{
+  box-shadow: 0rem 0.125rem 4px rgb(0,0,0,0.25);
+}
+
+.brd-gray-100{
+  border: 3px #888888 solid;
+}
+
+.input-format{
+  color: var(--clr-shd-accent-gold);
+  background-color: var(--clr-bg-gray-100);
+}
+.input-format:focus{
+  border: 3px var(--clr-shd-accent-gold) solid;
+  background-color: var(--clr-bg-accent-brown);
+  transition: all 600ms ease-out;
+}
+
+.divider{
+  width: auto;
+  height: 0.1rem;
+  border: 1px solid var(--clr-bg-gray-100);
+  margin: var(--pd-200);
+}
+
+.divider1{
+  width: 100%;
+  border: 1px solid var(--clr-bg-gray-200);
+}
+
+.bs-max{
+  box-shadow: 0px 0.5rem 32px 1rem var(--clr-bg-trn-black-200);
+}
+
+.social-button:hover{
+  cursor: pointer;
+  background-color: var(--clr-bg-white-100);
+  box-shadow: 0rem 0.125rem 8px 2px rgb(0,0,0,0.5);;
+  transition: all 600ms ease-out;
+}
+
+.login-button:hover{
+  cursor: pointer;
+  box-shadow: 0rem 0.125rem 8px 0.25rem var(--clr-shd-trn-accent-gold);
+  transition: all 600ms ease-out;
 }

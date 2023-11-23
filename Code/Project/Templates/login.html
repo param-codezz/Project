@@ -1,76 +1,71 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/Static/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Habibi&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <title>Gotham Regency Inn</title>
-    <style>
-        main{
-          background: url('/Static/pexels-ben-mack-5707644.jpg');
-        }
-      </style>
   </head>
   <body>
-    <!-- <img src="Static/pexels-ben-mack-5707644.jpg" alt="Error"> -->
-    <main class="bg-image">
-      <div class="fx-centre | fx-col">
-        <h1 class="text-white-100 | fs-500">Welcome back!!</h1>
-        <p class="fs-200 | text-gray-100">Let's get logged in</p>
-      </div>
-      <section></section>
-      <div class="fx-centre | fx-col">
-        <h2>Continue with</h2>
-        <div>
-          <span>Google logo</span>
-          <span>Apple logo</span>
-          <span>Meta logo</span>
-          <span>Twitter logo</span>
-        </div>
-        <div class="fx-centre |  fx-col">
-          <p>Don't have an account?</p>
-          <a href="#">Sign Up</a>
-        </div>
-        <section></section>
+    {% comment %} <img src={% static "pexels-ben-mack-5707644.jpg" %} alt="Error">  {% endcomment %}
+    <main class="bg-image fx-centre">
+      <div class="blr-300 bg-trn-black-500 brd-rad-100 wd-total pd-300 bs-max">
         <div class="fx-centre | fx-col">
-          <form action="Login">
-            <span class="fx-col">
-              <label for="user-email">Email/Username</label>
-              <input
-                type="email"
-                name="user-email"
-                placeholder="someone@email.com"
-                class="brd-rad-200 | bg-gray-100"
-              />
-            </span>
-            <span class="fx-col">
-              <label for="user-password">Password</label>
-              <input
-                type="password"
-                name="user-password"
-                placeholder="●●●●●●●●"
-                class="brd-rad-200 | bg-gray-100"
-              />
-            </span>
-            <span class="fx-col">
-              <label for="user-credkey">Credentials Key</label>
-              <input 
-                type="text" 
-                name="user-credkey" 
-                placeholder="xJ129ouB"
-                class="brd-rad-200 | bg-gray-100"
-              />
-            </span>
-            <span>
-              <button class="pd-inl-400 | pd-blk-100">Login</button>
-            </span>
-          </form>
+          <h1 class="text-white-100 | fs-500">Welcome back!!</h1>
+          <p class="fs-200 | text-gray-100">Let's get logged in</p>
+        </div>
+        <section class="divider"></section>
+        <div class="fx-centre | fx-col | pd-300">
+          <h2 class="text-white-100">Continue with</h2>
+          <div class="fx-row dsp-grid grid-width-equal">
+            <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "google.svg" %}" alt="Google Logo"></span>
+            <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "apple.svg" %}" alt="Apple Logo"></span>
+            <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "meta.svg" %}" alt="Meta Logo"></span>
+            <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "twitter.svg" %}" alt="Twitter Logo"></span>
+          </div>
+          <div class="fx-centre |  fx-col">
+            <p class="text-white-100">Don't have an account?</p>
+            <a href="#" class="text-accent-blue">Sign Up</a>
+          </div>
+          <section class="divider divider1"></section>
+          <div class="fx-centre | fx-col | pd-300">
+            <form action="Login">
+              <span class="fx-col mg-blk-300">
+                <label for="user-email" class="text-white-100">Email/Username</label>
+                <input
+                  type="email"
+                  name="user-email"
+                  placeholder="someone@email.com"
+                  class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+                />
+              </span>
+              <span class="fx-col mg-blk-300">
+                <label for="user-password" class="text-white-100">Password</label>
+                <input
+                  type="password"
+                  name="user-password"
+                  placeholder="●●●●●●●●"
+                  class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+                />
+              </span>
+              <span class="fx-col mg-blk-300">
+                <label for="user-credkey" class="text-white-100">Credentials Key</label>
+                <input 
+                  type="text" 
+                  name="user-credkey" 
+                  placeholder="xJ129ouB"
+                  class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+                />
+              </span>
+              <span>
+                <button class="pd-inl-400 | pd-blk-100 | brd-rad-btn-100 | text-black-200 | mg-blk-300 | login-button">Login</button>
+              </span>
+            </form>
+          </div>
         </div>
       </div>
     </main>
