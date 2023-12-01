@@ -237,6 +237,10 @@ body{
 }
 
 /* blur classes */
+.blr-50{
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
 .blr-100{
   -webkit-backdrop-filter: blur(var(--blr-100));
   backdrop-filter: blur(var(--blr-100));
@@ -346,10 +350,10 @@ body{
 }
 .fx-centre{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
 .bg-image{
   background: url(/Static/pexels-ben-mack-5707644.jpg) no-repeat center;
   background-size: cover;
@@ -366,19 +370,15 @@ body{
 .grid-width-equal{
   grid-template-columns: 1fr 1fr 1fr 1fr; 
 }
-
 .scale-0-75{
   transform: scale(0.75);
 }
-
 .bs-100{
   box-shadow: 0rem 0.125rem 4px rgb(0,0,0,0.25);
 }
-
 .brd-gray-100{
   border: 3px #888888 solid;
 }
-
 .input-format{
   color: var(--clr-shd-accent-gold);
   background-color: var(--clr-bg-gray-100);
@@ -388,32 +388,53 @@ body{
   background-color: var(--clr-bg-accent-brown);
   transition: all 600ms ease-out;
 }
-
 .divider{
   width: auto;
   height: 0.1rem;
   border: 1px solid var(--clr-bg-gray-100);
   margin: var(--pd-200);
 }
-
 .divider1{
   width: 100%;
   border: 1px solid var(--clr-bg-gray-200);
 }
-
 .bs-max{
   box-shadow: 0px 0.5rem 32px 1rem var(--clr-bg-trn-black-200);
 }
-
 .social-button:hover{
   cursor: pointer;
   background-color: var(--clr-bg-white-100);
   box-shadow: 0rem 0.125rem 8px 2px rgb(0,0,0,0.5);;
   transition: all 600ms ease-out;
 }
-
 .login-button:hover{
   cursor: pointer;
   box-shadow: 0rem 0.125rem 8px 0.25rem var(--clr-shd-trn-accent-gold);
-  transition: all 600ms ease-out;
+  transition: all 600ms ease-in;
+}
+.h100-w100{
+  height: 100%;
+  width: 100%;
+}
+.rounded-button{
+  border-radius: 100vw;
+}
+.bg-image2{
+  background: url(/Static/pexels-krishna-katira-5813253.jpg) no-repeat center;
+  background-size: cover;
+  height: 100svh;
+  width: 100svw;
+  background-position: 150%;
+}
+.hotel-card{
+  max-width: 420px;
+  max-width: 380px;
+}
+.hotel-card > h3{
+  color: var(--clr-text-white-200);
+  text-align: center;
+}
+.hotel-card > p{
+  color: var(--clr-text-white-300);
+  text-align: center;
 }
