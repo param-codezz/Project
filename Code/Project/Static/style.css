@@ -52,6 +52,10 @@ button{
   border: none;
 }
 
+button:hover{
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
    scroll-behavior: auto;
@@ -354,6 +358,19 @@ body{
   align-items: center;
   justify-content: center;
 }
+.fx-row-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.fx-column-space-evenly{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.align-center{
+  align-items: center;
+}
 .bg-image{
   background: url(/Static/pexels-ben-mack-5707644.jpg) no-repeat center;
   background-size: cover;
@@ -380,13 +397,14 @@ body{
   border: 3px #888888 solid;
 }
 .input-format{
+  outline: 0px transparent solid;
   color: var(--clr-shd-accent-gold);
   background-color: var(--clr-bg-gray-100);
 }
 .input-format:focus{
-  border: 3px var(--clr-shd-accent-gold) solid;
+  outline: 3px var(--clr-shd-accent-gold) solid;
   background-color: var(--clr-bg-accent-brown);
-  transition: all 600ms ease-out;
+  transition: all 600ms ease-in;
 }
 .divider{
   width: auto;
@@ -427,14 +445,102 @@ body{
   background-position: 150%;
 }
 .hotel-card{
-  max-width: 420px;
-  max-width: 380px;
+  max-width: 280px;
+  max-height: 580px;
+  min-height: 380px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.hotel-card > h3{
+.hotel-card > div > h3{
   color: var(--clr-text-white-200);
   text-align: center;
 }
-.hotel-card > p{
+.hotel-card > div >  p{
+  width: 60%;
   color: var(--clr-text-white-300);
   text-align: center;
+  font-size: var(--fs-200);
+}
+.gradient-button{
+  background: linear-gradient(90deg, var(--clr-brd-gray), #2F2F2FFF);
+}
+.card-button{
+  background-color: var(--clr-bg-trn-black-200);
+  backdrop-filter: blur(var(--blr-400));
+}
+.equal-width{
+  aspect-ratio: 1 / 1;
+  line-height: normal;
+  padding: 0;
+}
+.bg-transparent{
+  background-color: transparent;
+}
+.hotel-card-2{
+  /* fx-column-space-evenly bg-trn-black-200 blr-50 h100-w100 brd-rad-300 align-center */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: var(--brd-rad-300);
+  background-color: var(--clr-bg-trn-black-200);
+  backdrop-filter: blur(8px);
+}
+#arab{
+  border-radius: var(--brd-rad-300);
+  background-image: url(pexels-amar-saleem-70441.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+#italy{
+  border-radius: var(--brd-rad-300);
+  background-image: url(pexels-anas-jawed-1697076.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+#america{
+  border-radius: var(--brd-rad-300);
+  background-image: url(pexels-fa-rivera-11260417.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+#german{
+  border-radius: var(--brd-rad-300);
+  background-image: url(pexels-soly-moses-6008798.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+
+#arab:hover, #italy:hover, #america:hover, #german:hover{
+  filter: grayscale(0%);
+  transition: all 600ms;
+}
+
+#arab:hover > .hotel-card-2, #italy:hover > .hotel-card-2, #america:hover > .hotel-card-2, #german:hover > .hotel-card-2{
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  transition: all 600ms;
+}
+#arab:hover > div > h3, #italy:hover > div > h3, #america:hover > div > h3, #german:hover > div > h3{
+  color: transparent;
+  transition: all 300ms;
+}
+#arab:hover > div > p, #italy:hover > div > p, #america:hover > div > p, #german:hover > div > p{
+  color: transparent;
+  transition: all 300ms;
+}
+#arab:hover #button-style, #italy:hover #button-style, #america:hover #button-style, #german:hover #button-style{
+  background-color: #000000ef;
+  backdrop-filter: blur(10px);
 }

@@ -8,7 +8,7 @@ def login(request):
     return render(request, 'login.html')
 
 def find(request):
-    return HttpResponse('This is find page')
+    return render(request, 'find.html')
 
 def vacation(request):
     return HttpResponse('This is vacation page')
