@@ -375,7 +375,7 @@ body{
   background: url(/Static/pexels-ben-mack-5707644.jpg) no-repeat center;
   background-size: cover;
   height: 100svh;
-  width: 100svw;
+  width: 98.9svw;
   background-position: 150%;
 }
 .wd-total{
@@ -441,7 +441,7 @@ body{
   background: url(/Static/pexels-krishna-katira-5813253.jpg) no-repeat center;
   background-size: cover;
   height: 100svh;
-  width: 100svw;
+  width: 98.9svw;
   background-position: 150%;
 }
 .hotel-card{
@@ -451,6 +451,8 @@ body{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-inline: 1rem;
+  box-shadow: 0px 4px 7px var(--clr-bg-trn-black-300);
 }
 .hotel-card > div > h3{
   color: var(--clr-text-white-200);
@@ -468,6 +470,7 @@ body{
 .card-button{
   background-color: var(--clr-bg-trn-black-200);
   backdrop-filter: blur(var(--blr-400));
+  margin-inline: 0.15rem;
 }
 .equal-width{
   aspect-ratio: 1 / 1;
@@ -496,6 +499,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(100%);
+  box-shadow: 0px 4px 8px var(--clr-bg-trn-black-200);
 }
 #italy{
   border-radius: var(--brd-rad-300);
@@ -504,6 +508,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(100%);
+  box-shadow: 0px 4px 8px var(--clr-bg-trn-black-200);
 }
 #america{
   border-radius: var(--brd-rad-300);
@@ -512,6 +517,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(100%);
+  box-shadow: 0px 4px 8px var(--clr-bg-trn-black-200);
 }
 #german{
   border-radius: var(--brd-rad-300);
@@ -520,10 +526,12 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(100%);
+  box-shadow: 0px 4px 8px var(--clr-bg-trn-black-200);
 }
 
 #arab:hover, #italy:hover, #america:hover, #german:hover{
   filter: grayscale(0%);
+  box-shadow: 0px 4px 16px black;
   transition: all 600ms;
 }
 
@@ -543,4 +551,18 @@ body{
 #arab:hover #button-style, #italy:hover #button-style, #america:hover #button-style, #german:hover #button-style{
   background-color: #000000ef;
   backdrop-filter: blur(10px);
+}
+footer{
+  background-color: var(--clr-bg-footer);
+}
+footer h2{
+  color: var(--clr-text-white-300);
+}
+footer a{
+  color: var(--clr-bg-gray-100);
+}
+.fx-row-space-around{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

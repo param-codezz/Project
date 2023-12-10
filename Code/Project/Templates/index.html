@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/Static/style.css" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -140,10 +140,10 @@
         </div>
       </div>
     </div>
-    <footer>
-      <div>All Rights Reserved</div>
-      <div>
-        <span>© Gotham Regency Inn™, 2023</span>
+    <footer class="fx-row-space-around pd-blk-300">
+      <span class="fx-centre"><h2>All Rights Reserved</h2></span>
+      <div class="fx-centre">
+        <h2>© Gotham Regency Inn™, 2023</h2>
         <div>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms and Conditions</a>
