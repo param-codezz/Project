@@ -20,17 +20,23 @@
 
   <body>
     <div class="bg-image">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
       <header class="pd-inl-400 | pd-blk-300">
         <nav class="fs-300 | fx-space-between">
           <span>
-            <a href="#" class="text-white-100">Gotham Regency Inn</a>
+            <a href="" class="text-white-100">Gotham Regency Inn</a>
           </span>
           <span class="fx-space-evenly">
-            <a href="#" class="pd-inl-200 | text-white-100">Find</a>
-            <a href="#" class="pd-inl-200 | text-white-100">Vacation</a>
+            <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
             <a href="#" class="pd-inl-200 | text-white-100">Our Brands</a>
             <a href="#" class="pd-inl-200 | text-white-100">About Us</a>
-            <a href="#" class="pd-inl-200 | text-white-100">Profile</a>
+            {% if user.is_authenticated %}
+            <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+            {% else %}
+            <a href="/login" class="pd-inl-200 | text-white-100">Login</a>
+            {% endif %}
           </span>
         </nav>
       </header>
@@ -145,8 +151,8 @@
       <div class="fx-centre">
         <h2>© Gotham Regency Inn™, 2023</h2>
         <div>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms and Conditions</a>
+          <a href="/terms">Privacy Policy</a>
+          <a href="/terms">Terms and Conditions</a>
           <a href="#">Accesibility</a>
           <a href="#">Sitemap</a>
         </div>

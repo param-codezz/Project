@@ -12,18 +12,11 @@
   </head>
   <body>
     {% comment %} <img src={% static "pexels-ben-mack-5707644.jpg" %} alt="Error">  {% endcomment %}
-    {% if messages %}
-      <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
     <main class="bg-image fx-centre">
       <div class="blr-300 bg-trn-black-500 brd-rad-100 wd-total pd-300 bs-max">
         <div class="fx-centre | fx-col">
           <h1 class="text-white-100 | fs-500">Welcome back!!</h1>
-          <p class="fs-200 | text-gray-100">Let's get logged in</p>
+          <p class="fs-200 | text-gray-100">Let's get sign up</p>
         </div>
         <section class="divider"></section>
         <div class="fx-centre | fx-col | pd-300">
@@ -35,18 +28,27 @@
             <span class="bg-gray-200 pd-blk-50 pd-inl-200 fx-centre brd-rad-100 mg-inl-100 bs-100 scale-0-75 social-button"><img class="scale-0-75" src="{% static "twitter.svg" %}" alt="Twitter Logo"></span>
           </div>
           <div class="fx-centre |  fx-col">
-            <p class="text-white-100">Don't have an account?</p>
-            <a href="/signup" class="text-accent-blue">Sign Up</a>
+            <p class="text-white-100">Already have an account?</p>
+            <a href="/login" class="text-accent-blue">Login</a>
           </div>
           <section class="divider divider1"></section>
           <div class="fx-centre | fx-col | pd-300">
-            {% csrf_token %}
-            <form action="/login" method="post">
+            <form action="/signup" method="post">
+              <span class="fx-col mg-blk-300">
+                <label for="user-name" class="text-white-100">Name</label>
+                <input
+                  id = "user-name"
+                  type="text"
+                  name="user-name"
+                  placeholder="Name"
+                  class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+                />
+              </span>
               <span class="fx-col mg-blk-300">
                 <label for="user-email" class="text-white-100">Email/Username</label>
                 <input
+                  id = "user-email"
                   type="email"
-                  id="user-email"
                   name="user-email"
                   placeholder="someone@email.com"
                   class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
@@ -54,11 +56,18 @@
               </span>
               <span class="fx-col mg-blk-300">
                 <label for="user-password" class="text-white-100">Password</label>
-                <input
-                  type="password"
-                  id="user-password"
-                  name="user-password"
+                <input 
+                  id = "user-password"
+                  type="password" 
+                  name="user-password" 
                   placeholder="●●●●●●●●"
+                  class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
+                />
+                <input 
+                  id = "user-password2"
+                  type="password" 
+                  name="user-password2" 
+                  placeholder="Confirm Password"
                   class="brd-rad-200 | bg-gray-100 | brd-gray-100 | input-format"
                 />
               </span>
