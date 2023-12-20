@@ -19,10 +19,15 @@
   </head>
 
   <body>
+    {% if messages %}
+  <ul class="messages fx-row" id="messageTag">
+  {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+  {% endfor %}
+  <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+  </ul>
+{% endif %}
     <div class="bg-image">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
       <header class="pd-inl-400 | pd-blk-300">
         <nav class="fs-300 | fx-space-between">
           <span>
@@ -158,5 +163,11 @@
         </div>
       </div>
     </footer>
+    <script>
+      function hideElement() {
+        var element = document.getElementById('messageTag')
+        element.style.display = 'none';
+    }
+    </script>
   </body>
 </html>

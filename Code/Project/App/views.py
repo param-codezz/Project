@@ -2,7 +2,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
@@ -64,4 +64,24 @@ def home(request):
 
 def profile(request):
     name = request.user.first_name
-    return render(request, 'profile.html', {'username': name})
+    username = request.user.username
+    user_membership = 'Gold Pro'
+    if request.method == "POST":
+        button = request.POST['handle_button']
+        if button == "gold":
+            user_membership = 'Gold'
+            messages.success(request, f"Upgraded membership to {user_membership}")
+        elif button == "goldpro":
+            user_membership = 'GoldPro'
+            messages.success(request, f"Upgraded membership to {user_membership}")
+        elif button == "renew":
+            messages.success(request, f"Renewed membership. Current membership status {user_membership}")
+        elif button == "logout":
+            logout(request)
+            messages.warning(request, "Account Logged Out")
+            return redirect("/home")
+        elif button == "delete":
+            User.objects.get(username= username).delete()
+            messages.warning(request, "Account Deleted")
+            return redirect("/home")
+    return render(request, 'profile.html', {'username': name, 'membership': user_membership})

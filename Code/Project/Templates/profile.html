@@ -18,6 +18,13 @@
     <title>Gotham Regency Inn</title>
   </head>
   <body>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
     <div class="bg-image">
       <header class="pd-inl-400 | pd-blk-300">
         <nav class="fs-300 | fx-space-between">
@@ -38,9 +45,98 @@
       </header>
       <main>
         {% if user.is_authenticated %}
-        <p>Hey {{ username }}</p>
+        <div class="fx-row">
+          <div class="fx-column-space-evenly">
+            <div class="fx-row-a-center pd-inl-100 pd-blk-300">
+              <img src="{% static "person.png" %}" alt="person-image">
+              <h1 class="text-white-100">{{ username }}</h1>
+            </div>
+            <div class="pd-inl-100 pd-blk-300">
+              <span>
+                <span>    
+                  <span class="text-white-100">Membership:</span>
+                  {% if membership == 'None' %}
+                  <span class="text-white-300">{{ membership }}</span>
+                  {% elif membership == 'Gold' %}
+                  <span class="text-gold">{{ membership }}</span>
+                  {% elif membership == "Gold Pro" %}
+                  <span class="text-gold-glow">{{ membership }}</span>
+                  {% endif %}
+                </span>
+                <span class="text-gray-200">Expires in 6 months</span>
+              </span>
+              {% if membership == 'None' %}
+              <span>
+                <p class="text-gray-100">Activating to Gold Membership will get you additional 10% discount</p>
+                <span>
+                  <form action="/profile" method="post">
+                    {% csrf_token %}
+                    <button class="bg-gold2 text-white-100" type="submit" name="handle_button" value="gold">Upgrade to Gold</button>
+                  </form>
+                </span>
+              </span>
+              {% elif membership == 'Gold' %}
+              <span>
+                <p class="text-gray-100">Activating to Gold Pro Membership will get you additional 40% discount</p>
+                <span>
+                  <form action="/profile" method="post">
+                    {% csrf_token %}
+                    <button class="bg-gold text-white-100" type="submit" name="handle_button" value="goldpro">Upgrade to Gold Pro</button>
+                    <button class="bg-black-200 text-white-100" type="submit" name="handle_button" value="renew">Renew Membership</button>
+                  </form>
+                </span>
+              </span>
+              {% elif membership == 'Gold Pro' %}
+              <span>
+                <p class="text-gray-100">Gold Pro membership is active and you can avail flat 40% discount on all bookings</p>
+                <span>
+                  <form action="/profile" method="post">
+                    {% csrf_token %}
+                    <button class="bg-black-200 text-white-100" type="submit" name="handle_button" value="renew">Renew Membership</button>
+                  </form>
+                </span>
+              </span>
+              {% endif %}
+            </div>
+            <div class="pd-inl-100 pd-blk-300">
+              <span class="text-white-100">
+                <span>Credits:</span>
+                <span>$300,000 only</span>
+              </span>
+              <p class="text-gray-100">$500,000 minimum balance gives you Premium suite for 10% discount</p>
+              <form action="/profile" method="post">
+                {% csrf_token %}
+                <button class="bg-white-100 text-black-200" type="submit" name="handle_button" value="addcredits">Add Credits</button>
+              </form>
+            </div>
+          </div>
+          <div class="fx-col-space-between">
+            <div class="text-white-100">
+              <h2>Hotels visited</h2>
+              <ol>
+                {% if hotel == "" %}
+                  <p>No Hotels visited</p>
+                  <button><a href="/find">Book Now</a></button>
+                {% else %}
+                  {% for hotel in hotels %}
+                    <li>{{ hotel }}</li>
+                    {% endfor %}
+                {% endif %}
+              </ol>
+            </div>
+            <div>
+              <form action="/profile" method="post">
+                {% csrf_token %}
+                <button class="bg-black-100 text-white-200" type="submit" name="handle_button" value="logout">Log Out</button>
+                <button class="logout" type="submit" name="handle_button" value="delete">Delete Account</button>
+              </form>
+            </div>
+          </div>
+        </div>
         {% else %}
-        <p>Hi</p>
+        <h1>Seems like you haven't logged in</h1>
+        <button><a href="/login">Log In</a></button>
+        <button><a href="/signup">Sign Up</a></button>
         {% endif %}
       </main>
     </div>

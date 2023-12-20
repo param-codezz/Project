@@ -40,8 +40,8 @@
           </div>
           <section class="divider divider1"></section>
           <div class="fx-centre | fx-col | pd-300">
-            {% csrf_token %}
             <form action="/login" method="post">
+              {% csrf_token %}
               <span class="fx-col mg-blk-300">
                 <label for="user-email" class="text-white-100">Email/Username</label>
                 <input

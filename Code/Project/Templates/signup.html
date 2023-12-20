@@ -12,6 +12,13 @@
   </head>
   <body>
     {% comment %} <img src={% static "pexels-ben-mack-5707644.jpg" %} alt="Error">  {% endcomment %}
+    {% if messages %}
+      <ul class="messages" id="messageTag">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
     <main class="bg-image fx-centre">
       <div class="blr-300 bg-trn-black-500 brd-rad-100 wd-total pd-300 bs-max">
         <div class="fx-centre | fx-col">
