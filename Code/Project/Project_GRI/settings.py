@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Project.urls'
+ROOT_URLCONF = 'Project_GRI.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Project.wsgi.application'
+WSGI_APPLICATION = 'Project_GRI.wsgi.application'
 
 
 # Database
@@ -126,3 +126,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Static')
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Gmail SMTP port
+EMAIL_USE_TLS = True  # Use TLS for secure connection
+
+# Gmail account credentials
+EMAIL_HOST_USER = 'gothamregency@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'ufyxzccohwhwkdqq'
