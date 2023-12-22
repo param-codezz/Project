@@ -620,7 +620,6 @@ ul, .messages {
   height: 100%;
   color: green;
   background-color: #daffda;
-  border: 1px solid #4caf50;
 }
 
 .error {
