@@ -1,8 +1,9 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render, HttpResponse
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from App.models import CustomUser
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.core.mail import send_mail, EmailMessage
 from Project_GRI import settings
 from django.contrib.sites.shortcuts import get_current_site
@@ -24,12 +25,12 @@ def signin(request):
         user = authenticate(username= email, password= password)
         if user is not None:
             login(request, user)
-            name = request.user.first_name
+            name = request.user.name
             return redirect('/profile')
         
         else:
             messages.error(request, "Bad Credentials")
-            return redirect('home')
+            return redirect('/home')
 
 
     return render(request, 'login.html')
@@ -41,20 +42,23 @@ def signup(request):
         email = request.POST['user-email']
         password1 = request.POST['user-password']
         passsword2 = request.POST['user-password2']
-        if User.objects.filter(email = email):
+        if CustomUser.objects.filter(email = email):
             messages.error(request, "Already registered")
             redirect('/home')
         if password1 != passsword2:
             messages.error(request, "Password doesn't match")
+            redirect('/home')
 
-        myuser = User.objects.create_user(username= email, email=email, password= password1)
-        myuser.first_name = name
+        # myuser = User.objects.create_user(username= email, email=email, password= password1)
+        # User = CustomUser()
+        myuser = get_user_model().objects.create_user(email, password1)
+        myuser.name = name
         myuser.is_active = False
         myuser.save()
         messages.success(request, "Account successfully created")
 
         subject = "Welcome to Gotham Regency Inn"
-        message = f"Hello {myuser.first_name},\n\nWe thank you for becoming a member of GRI. We provide experience for handcrafted luxury.\nPlease activate your account from the next mail.\n\nThank You,\nGotham Regency Inn"
+        message = f"Hello {myuser.name},\n\nWe thank you for becoming a member of GRI. We provide experience for handcrafted luxury.\nPlease activate your account from the next mail.\n\nThank You,\nGotham Regency Inn"
         from_email = settings.EMAIL_HOST_USER
         to_mail = [myuser.email]
         send_mail(subject, message, from_email, recipient_list=to_mail, fail_silently=False)
@@ -67,7 +71,7 @@ def signup(request):
         activation_url = reverse('activate', kwargs={'uidb64': uid, 'token': token})
         email_message = render_to_string('email_confirmation.html', 
         {
-            'name': myuser.first_name,
+            'name': myuser.name,
             'domain': current_site.domain,
             'activation_url': activation_url,
         })
@@ -84,8 +88,8 @@ def signup(request):
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        myuser = User.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        myuser = get_user_model().objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
         myuser = None
     
     if myuser is not None and generate_token.check_token(myuser, token):
@@ -113,25 +117,32 @@ def home(request):
     return redirect('/')
 
 def profile(request):
-    name = request.user.first_name
-    username = request.user.username
-    user_membership = 'Gold'
+    name = request.user.name
+    username = request.user.email
+    user_membership = request.user.membership
+    credits = request.user.credit_points
     if request.method == "POST":
         button = request.POST['handle_button']
         if button == "gold":
             user_membership = 'Gold'
+            request.user.save()
             messages.success(request, f"Upgraded membership to {user_membership}")
         elif button == "goldpro":
             user_membership = 'GoldPro'
+            request.user.save()
             messages.success(request, f"Upgraded membership to {user_membership}")
         elif button == "renew":
             messages.success(request, f"Renewed membership. Current membership status {user_membership}")
         elif button == "logout":
+            request.user.save()
             logout(request)
             messages.warning(request, "Account Logged Out")
             return redirect("/home")
         elif button == "delete":
-            User.objects.get(username= username).delete()
+            get_user_model().objects.get(username= username).delete()
             messages.warning(request, "Account Deleted")
             return redirect("/home")
-    return render(request, 'profile.html', {'username': name, 'membership': user_membership})
+        elif button == "addcredits":
+            credits += 10000
+            request.user.save()
+    return render(request, 'profile.html', {'username': name, 'membership': user_membership, 'credits': credits})
