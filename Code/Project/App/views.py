@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render, HttpResponse
 from App.models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, EmailMessage
 from Project_GRI import settings
 from django.contrib.sites.shortcuts import get_current_site
@@ -101,48 +102,133 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, "Email not confirmed")
         return redirect('/home')
+    
+def check_and_append(string, processed_string) -> str:
+    str_list = string.split("_")
+    pro_list = processed_string.split("_")
+    if processed_string == "":
+        if processed_string not in str_list:
+            for item in pro_list:
+                if item not in str_list:
+                    str_list.append(item)
+        str_list.pop(str_list.index(""))
+    else:
+        if processed_string not in str_list:
+            for item in pro_list:
+                if item not in str_list:
+                    str_list.append(item)
+    return str("_".join(str_list))
+
+
 def find(request):
+    hotel_dict = {
+        'dubai': 'dub',
+        'abudhabi': 'abd',
+        'newyork': 'nyc',
+        'tokyo': 'tok',
+        'amsterdam': 'ams',
+        'pyongyang': 'pyo',
+        'riodejanerio': 'rdj',
+        'munich': 'mch',
+        'venice': 'vnc',
+    }
+    hotels = []
+    if request.method == "POST":
+        if 'hotel' in request.POST:
+            select = request.POST['hotel']
+            if select in hotel_dict:
+                hotels.append(hotel_dict[select])
+            if len(hotels) != 1:
+                hotels_str = str("_".join(hotels))
+            else:
+                hotels_str = ""
+                for item in hotels:
+                    hotels_str = hotels_str + item
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login")
+        user_hotels = request.user.hotel
+        new_hotels = check_and_append(user_hotels, hotels_str)
+        print(new_hotels)
+        request.user.hotel = new_hotels
+        request.user.credit_points -= 1000
+        request.user.save()
+        messages.success(request, "Booked")
+
     return render(request, 'find.html')
+
 
 def terms(request):
     return render(request, 'terms.html')
 
-def ourBrands(request):
-    return HttpResponse('This is our brands page')
-
-def aboutUs(request):
-    return HttpResponse('This is about us page')
+def about(request):
+    if request.method == "POST":
+        select = request.POST['handleButton']
+        if select == 'redirect':
+            return redirect('/find')
+    return render(request, "about_us.html")
 
 def home(request):
+    if request.method == "POST":
+        select = request.POST['handleButton']
+        if select == 'redirect':
+            return redirect('/find')
     return redirect('/')
 
+
 def profile(request):
-    name = request.user.name
-    username = request.user.email
-    user_membership = request.user.membership
-    credits = request.user.credit_points
-    if request.method == "POST":
-        button = request.POST['handle_button']
-        if button == "gold":
-            user_membership = 'Gold'
-            request.user.save()
-            messages.success(request, f"Upgraded membership to {user_membership}")
-        elif button == "goldpro":
-            user_membership = 'GoldPro'
-            request.user.save()
-            messages.success(request, f"Upgraded membership to {user_membership}")
-        elif button == "renew":
-            messages.success(request, f"Renewed membership. Current membership status {user_membership}")
-        elif button == "logout":
-            request.user.save()
-            logout(request)
-            messages.warning(request, "Account Logged Out")
-            return redirect("/home")
-        elif button == "delete":
-            get_user_model().objects.get(username= username).delete()
-            messages.warning(request, "Account Deleted")
-            return redirect("/home")
-        elif button == "addcredits":
-            credits += 10000
-            request.user.save()
-    return render(request, 'profile.html', {'username': name, 'membership': user_membership, 'credits': credits})
+    if request.user.is_authenticated:
+        hotel_dict = {
+            'dub': 'GRI, Dubai, UAE',
+            'abd': 'GRI, Abu Dhabi, UAE',
+            'nyc': 'GRI, New York, USA',
+            'tok': 'GRI, Tokyo, Japan',
+            'ams': 'GRI, Amsterdam, Netherlands',
+            'pyo': 'GRI, Pyongyang, North Korea',
+            'rdj': 'GRI, Rio de Janerio, Brazil',
+            'mch': 'GRI, Munich, Germany',
+            'vnc': 'GRI, Venice, Italy',
+        }
+        name = request.user.name
+        username = request.user.email
+        user_membership = request.user.membership
+        credits = request.user.credit_points
+        # hotels = ["GRI, Dubai, UAE", "GRI, Abu Dhabi, UAE"]
+        usr_hotels =  request.user.hotel
+        tmp = usr_hotels.split("_")
+        if "" in tmp:
+            tmp.pop(tmp.index(""))
+        hotels = []
+        for item in tmp:
+            hotels.append(hotel_dict[item])
+        if request.method == "POST":
+            button = request.POST['handle_button']
+            if button == "gold":
+                request.user.membership = 'Gold'
+                request.user.save()
+                messages.success(request, f"Upgraded membership to {request.user.membership}")
+            elif button == "goldpro":
+                request.user.membership = 'GoldPro'
+                request.user.save()
+                messages.success(request, f"Upgraded membership to {request.user.membership}")
+            elif button == "renew":
+                messages.success(request, f"Renewed membership. Current membership status {user_membership}")
+            elif button == "logout":
+                request.user.save()
+                logout(request)
+                messages.warning(request, "Account Logged Out")
+                return redirect("/home")
+            elif button == "delete":
+                get_user_model().objects.get(email= username).delete()
+                messages.warning(request, "Account Deleted")
+                return redirect("/home")
+            elif button == "addcredits":
+                request.user.credit_points += 10000
+                request.user.save()
+            elif button == "remove_mem":
+                messages.warning(request, "Removed Membership")
+                request.user.membership = "None"
+                request.user.save()
+        return render(request, 'profile.html', {'username': request.user.name, 'membership': request.user.membership, 'credits': request.user.credit_points, 'hotel': hotels})
+    else:
+        messages.error(request, "Please Login first")
+        return redirect("/home")

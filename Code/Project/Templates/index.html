@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -35,8 +36,7 @@
           </span>
           <span class="fx-space-evenly">
             <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
-            <a href="#" class="pd-inl-200 | text-white-100">Our Brands</a>
-            <a href="#" class="pd-inl-200 | text-white-100">About Us</a>
+            <a href="/about" class="pd-inl-200 | text-white-100">About Us</a>
             {% if user.is_authenticated %}
             <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
             {% else %}
@@ -49,11 +49,16 @@
         <h1 class="text-white-100 fs-600">
           Find a perfect place for your stay
         </h1>
-        <button
+        <form action="home" method="post">
+          {% csrf_token %}
+          <button
           class="rounded-button pd-inl-300 pd-blk-100 gradient-button text-white-200"
-        >
+          name="handleButton"
+          value="redirect"
+          >
           Book Now
         </button>
+      </form>
       </div>
     </div>
     <section></section>
@@ -71,14 +76,19 @@
                 lavish suite for you, equipped with 7 star resort and bars
               </p>
               <div class="fx-row-center">
-                <button
+                <form action="home" method="post" class="fx-row-center">
+                  {% csrf_token %}
+                  <button
                   class="rounded-button pd-inl-300 pd-blk-100 card-button text-white-100" id="button-style"
-                >
+                  name="handleButton"
+                  value="redirect"
+                  >
                   Reseve
                 </button>
-                <button class="rounded-button card-button" id="button-style">
+                <button class="rounded-button card-button" id="button-style" name="handleButton" value="redirect">
                   <img src="{% static "info.svg" %}" alt="info_button">
                 </button>
+              </form>
               </div>
             </div>
           </div>
@@ -89,18 +99,23 @@
               <h3 class="fs-300">Italian Russo</h3>
               <p>
                 5-star Italian Inn at Venice, Italy. Enjoy the luxurious river
-                view at the banks of Grand Canal of Venice, and find your
+                view at the banks of Grand Canal of Venice, and home your
                 Maradona energy.
               </p>
               <div class="fx-row-center">
-                <button
+                <form action="home" method="post" class="fx-row-center">
+                  {% csrf_token %}
+                  <button
                   class="rounded-button pd-inl-300 pd-blk-100 card-button text-white-100" id="button-style"
-                >
+                  name="handleButton"
+                  value="redirect"
+                  >
                   Reseve
                 </button>
-                <button class="rounded-button card-button" id="button-style">
+                <button class="rounded-button card-button" id="button-style" name="handleButton" value="redirect">
                   <img src="{% static "info.svg" %}" alt="info_button">
                 </button>
+              </form>
               </div>
             </div>
           </div>
@@ -115,14 +130,19 @@
                 food.
               </p>
               <div class="fx-row-center">
-                <button
+                <form action="home" method="post" class="fx-row-center">
+                  {% csrf_token %}
+                  <button
                   class="rounded-button pd-inl-300 pd-blk-100 card-button text-white-100" id="button-style"
-                >
+                  name="handleButton"
+                  value="redirect"
+                  >
                   Reseve
                 </button>
-                <button class="rounded-button card-button" id="button-style">
+                <button class="rounded-button card-button" id="button-style" name="handleButton" value="redirect">
                   <img src="{% static "info.svg" %}" alt="info_button">
                 </button>
+              </form>
               </div>
             </div>
           </div>
@@ -137,14 +157,19 @@
                 food.
               </p>
               <div class="fx-row-center">
-                <button
+                <form action="home" method="post" class="fx-row-center">
+                  {% csrf_token %}
+                  <button
                   class="rounded-button pd-inl-300 pd-blk-100 card-button text-white-100" id="button-style"
-                >
+                  name="handleButton"
+                  value="redirect"
+                  >
                   Reseve
                 </button>
-                <button class="rounded-button card-button" id="button-style">
+                <button class="rounded-button card-button" id="button-style" name="handleButton" value="redirect">
                   <img src="{% static "info.svg" %}" alt="info_button">
                 </button>
+              </form>
               </div>
             </div>
           </div>

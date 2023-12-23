@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -19,12 +20,13 @@
   </head>
   <body>
     {% if messages %}
-    <ul class="messages">
-    {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
+  <ul class="messages fx-row" id="messageTag">
+  {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+  {% endfor %}
+  <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+  </ul>
+{% endif %}
     <div class="bg-image">
       <header class="pd-inl-400 | pd-blk-300">
         <nav class="fs-300 | fx-space-between">
@@ -33,45 +35,46 @@
           </span>
           <span class="fx-space-evenly">
             <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
-            <a href="#" class="pd-inl-200 | text-white-100">Our Brands</a>
-            <a href="#" class="pd-inl-200 | text-white-100">About Us</a>
+            <a href="/about" class="pd-inl-200 | text-white-100">About Us</a>
             {% if user.is_authenticated %}
-            <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+            <a href="/profile" class="pd-inl-200 | text-white-100 | brd-rad-btn-100 | bg-black-100 | bs-200">Profile</a>
             {% else %}
             <a href="/login" class="pd-inl-200 | text-white-100">Login</a>
             {% endif %}
           </span>
         </nav>
       </header>
-      <main>
+      <main class="fx-centre">
         {% if user.is_authenticated %}
-        <div class="fx-row">
+        <div class="fx-row wd-total blr-300 bs-max brd-rad-300 mg-inl-300 pd-inl-400 pd-blk-300">
           <div class="fx-column-space-evenly">
             <div class="fx-row-a-center pd-inl-100 pd-blk-300">
-              <img src="{% static "person.png" %}" alt="person-image">
+              <span class="img mg-inl-300">
+                <img src="{% static "person.png" %}" alt="person-image">
+              </span>
               <h1 class="text-white-100">{{ username }}</h1>
             </div>
             <div class="pd-inl-100 pd-blk-300">
               <span>
                 <span>    
-                  <span class="text-white-100">Membership:</span>
+                  <span class="text-white-100 fs-200">Membership:</span>
                   {% if membership == 'None' %}
-                  <span class="text-white-300">{{ membership }}</span>
+                  <span class="text-white-300 fs-200">{{ membership }}</span>
                   {% elif membership == 'Gold' %}
-                  <span class="text-gold">{{ membership }}</span>
-                  {% elif membership == "Gold Pro" %}
-                  <span class="text-gold-glow">{{ membership }}</span>
+                  <span class="text-gold fs-200">{{ membership }}</span>
+                  {% elif membership == "GoldPro" %}
+                  <span class="text-gold-glow fs-200">{{ membership }}</span>
                   {% endif %}
                 </span>
-                <span class="text-gray-200">Expires in 6 months</span>
+                <span class="text-gray-200 mg-inl-300">Expires in 6 months</span>
               </span>
               {% if membership == 'None' %}
               <span>
-                <p class="text-gray-100">Activating to Gold Membership will get you additional 10% discount</p>
+                <p class="text-gray-100 width-75">Activating to Gold Membership will get you additional 10% discount</p>
                 <span>
                   <form action="/profile" method="post">
                     {% csrf_token %}
-                    <button class="bg-gold2 text-white-100" type="submit" name="handle_button" value="gold">Upgrade to Gold</button>
+                    <button class="bg-gold2 text-white-100 mg-blk-200 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-hover" type="submit" name="handle_button" value="gold">Upgrade to Gold</button>
                   </form>
                 </span>
               </span>
@@ -81,18 +84,18 @@
                 <span>
                   <form action="/profile" method="post">
                     {% csrf_token %}
-                    <button class="bg-gold text-white-100" type="submit" name="handle_button" value="goldpro">Upgrade to Gold Pro</button>
-                    <button class="bg-black-200 text-white-100" type="submit" name="handle_button" value="renew">Renew Membership</button>
+                    <button class="bg-gold text-white-100 mg-blk-200 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-pro-hover" type="submit" name="handle_button" value="goldpro">Upgrade to Gold Pro</button>
+                    <button class="bg-black-200 text-white-100 mg-blk-200 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-hover" type="submit" name="handle_button" value="renew">Renew Membership</button>
                   </form>
                 </span>
               </span>
-              {% elif membership == 'Gold Pro' %}
+              {% elif membership == 'GoldPro' %}
               <span>
                 <p class="text-gray-100">Gold Pro membership is active and you can avail flat 40% discount on all bookings</p>
                 <span>
                   <form action="/profile" method="post">
                     {% csrf_token %}
-                    <button class="bg-black-200 text-white-100" type="submit" name="handle_button" value="renew">Renew Membership</button>
+                    <button class="bg-black-200 text-white-100 mg-blk-200 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-pro-renew" type="submit" name="handle_button" value="renew">Renew Membership</button>
                   </form>
                 </span>
               </span>
@@ -103,23 +106,26 @@
                 <span>Credits:</span>
                 <span>${{credits}} only</span>
               </span>
-              <p class="text-gray-100">$500,000 minimum balance gives you Premium suite for 10% discount</p>
+              <p class="text-gray-100 width-75">$500,000 minimum balance gives you Premium suite for 10% discount</p>
               <form action="/profile" method="post">
                 {% csrf_token %}
-                <button class="bg-white-100 text-black-200" type="submit" name="handle_button" value="addcredits">Add Credits</button>
+                <button class="bg-white-100 text-black-200 login-button mg-blk-200 pd-inl-400 pd-blk-100 brd-rad-btn-100" type="submit" name="handle_button" value="addcredits">Add Credits</button>
               </form>
             </div>
           </div>
-          <div class="fx-col-space-between">
+          <section class="divider-vertical"></section>
+          <div class="fx-col-space-between pd-inl-300">
             <div class="text-white-100">
-              <h2>Hotels visited</h2>
+              <h2 class="fx-centre pd-100 mg-blk-300">Hotels visited</h2>
               <ol>
                 {% if hotel == "" %}
+                <div>
                   <p>No Hotels visited</p>
-                  <button><a href="/find">Book Now</a></button>
-                {% else %}
-                  {% for hotel in hotels %}
-                    <li>{{ hotel }}</li>
+                  <button class="rounded-button pd-inl-300 pd-blk-100 gradient-button"><a href="/find" class="text-white-200">Book Now</a></button>
+                </div>
+                {% elif hotel != "" %}
+                  {% for hotel_ in hotel %}
+                    <li class="pd-blk-100">{{ hotel_ }}</li>
                     {% endfor %}
                 {% endif %}
               </ol>
@@ -127,8 +133,15 @@
             <div>
               <form action="/profile" method="post">
                 {% csrf_token %}
-                <button class="bg-black-100 text-white-200" type="submit" name="handle_button" value="logout">Log Out</button>
-                <button class="logout" type="submit" name="handle_button" value="delete">Delete Account</button>
+                <div class="fx-col">
+                  <div class="mg-blk-200">
+                    <button class="mg-inl-100 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-hover remove" type="submit" name="handle_button" value="remove_mem">Remove membership</button>
+                  </div>
+                  <div class="mg-blk-200">
+                    <button class="bg-black-100 text-white-200 mg-inl-100 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-hover" type="submit" name="handle_button" value="logout">Log Out</button>
+                    <button class="logout mg-inl-100 pd-inl-400 pd-blk-100 brd-rad-btn-100 gold-hover" type="submit" name="handle_button" value="delete">Delete Account</button>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -141,5 +154,11 @@
       </main>
     </div>
     <footer></footer>
+    <script>
+      function hideElement() {
+        var element = document.getElementById('messageTag')
+        element.style.display = 'none';
+    }
+    </script>
   </body>
 </html>

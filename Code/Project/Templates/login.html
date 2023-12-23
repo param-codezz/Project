@@ -4,22 +4,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/Static/style.css" />
+    <link rel="stylesheet" href="{% static "style.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <title>Gotham Regency Inn</title>
   </head>
   <body>
     {% comment %} <img src={% static "pexels-ben-mack-5707644.jpg" %} alt="Error">  {% endcomment %}
     {% if messages %}
-      <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-    <main class="bg-image fx-centre">
+  <ul class="messages fx-row" id="messageTag">
+  {% for message in messages %}
+    <strong><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></strong>
+  {% endfor %}
+  <button onclick="hideElement()" class="bg-gray-200 text-white-200 pd-200">×</button>
+  </ul>
+{% endif %}
+  <div class="bg-image">
+    <header class="pd-inl-400 | pd-blk-300">
+      <nav class="fs-300 | fx-space-between">
+          <span>
+              <a href="/home" class="text-white-100">Gotham Regency Inn</a>
+          </span>
+          <span class="fx-space-evenly">
+              <a href="/find" class="pd-inl-200 | text-white-100">Find</a>
+              <a href="/about" class="pd-inl-200 | text-white-100">About Us</a>
+              {% if user.is_authenticated %}
+                  <a href="/profile" class="pd-inl-200 | text-white-100">Profile</a>
+              {% else %}
+                  <a href="/login" class="pd-inl-200 | text-white-100 | bg-black-100 | brd-rad-btn-100 | bs-200">Login</a>
+              {% endif %}
+          </span>
+      </nav>
+  </header>
+    <main class="fx-centre">
       <div class="blr-300 bg-trn-black-500 brd-rad-100 wd-total pd-300 bs-max">
         <div class="fx-centre | fx-col">
           <h1 class="text-white-100 | fs-500">Welcome back!!</h1>
@@ -70,5 +89,12 @@
         </div>
       </div>
     </main>
+  </div>
+    <script>
+      function hideElement() {
+        var element = document.getElementById('messageTag')
+        element.style.display = 'none';
+    }
+    </script>
   </body>
 </html>

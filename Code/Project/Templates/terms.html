@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{% static "logo.jpeg" %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "style.css" %}">
     <title>Gotham Regency Inn</title>
     <style>
         body{
@@ -17,7 +20,10 @@
   </head>
   <body>
     <main>
-      <h1>Terms and Conditions</h1>
+      <div class="fx-row">
+        <button class="bg-transparent"><a href="/home" class="text-white-100 mg-inl-300">←</a></button>
+        <h1>Terms and Conditions</h1>
+      </div>
       <br />
       <p>
         1. <strong>Booking Confirmation:</strong> By using our hotel booking
